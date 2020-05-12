@@ -117,3 +117,4 @@ print("acc:",  acc)
 
 output = model.predict(x_test)
 print("결과물 : \n", output)
+'''오차범위 0.0002의 값을 얻었으므로 만족, 신경망 모양을 고쳤다 ''' 
