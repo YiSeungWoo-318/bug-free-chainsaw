@@ -15,7 +15,9 @@ from keras.layers import Dense
 
 model = Sequential()
 
-model.add(Dense(10, input_dim = 3))
+model.add(Dense(100, input_dim = 3))
+model.add(Dense(100))
+model.add(Dense(100))
 model.add(Dense(10))
 model.add(Dense(10))
 model.add(Dense(10))
@@ -203,21 +205,13 @@ model.add(Dense(10))
 model.add(Dense(10))
 model.add(Dense(10))
 model.add(Dense(10))
-model.add(Dense(10))
-model.add(Dense(10))
-model.add(Dense(10))
-
-
-
-
-
 
 
 
 model.add(Dense(1))
 #3. 훈련
 model.compile(loss = 'mse', optimizer='adam', metrics=['mse'])
-model.fit(x_train, y_train, epochs=50, batch_size=1, validation_split=(0.1))
+model.fit(x_train, y_train, epochs=30, batch_size=1, validation_split=(0.1))
 # mse 는 회귀 acc는 분류 회귀는 1차함수 분류는 예측값의 범위가 정해져 있다.
 
 
