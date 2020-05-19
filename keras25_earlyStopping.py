@@ -17,9 +17,9 @@ y1 = np.transpose(y1)
 from sklearn.model_selection import train_test_split
 x1_train, x1_test = train_test_split(x1, shuffle=False, train_size=0.75)
 from sklearn.model_selection import train_test_split
-x2_train, x2_test = train_test_split(x2, shuffle=False, train_size=0.75)
+x2_train, x2_test = train_test_split(x2, random_state = 1 , train_size=0.75)
 from sklearn.model_selection import train_test_split
-y1_train, y1_test = train_test_split(y1, shuffle=False, train_size=0.75)
+y1_train, y1_test = train_test_split(y1, random_state = 3, train_size=0.75)
 
 #2. 모델구성
 from keras.models import Sequential, Model
@@ -29,10 +29,10 @@ from keras.layers import Dense, Input
 input1 = Input(shape=(3,))
 
 dense1_1 = Dense(5, activation = 'relu',name = 'dense1_1')(input1)
-dense1_2 = Dense(10, activation = 'relu',name = 'dense1_2')(dense1_1)
-dense1_3 = Dense(10, activation = 'relu',name = 'dense1_3')(dense1_2)
+dense1_2 = Dense(100, activation = 'relu',name = 'dense1_2')(dense1_1)
+dense1_3 = Dense(100, activation = 'relu',name = 'dense1_3')(dense1_2)
 dense1_4 = Dense(100, activation = 'relu',name = 'dense1_4')(dense1_3)
-dense1_5 = Dense(10, activation = 'relu',name = 'dense1_5')(dense1_4)
+dense1_5 = Dense(100, activation = 'relu',name = 'dense1_5')(dense1_4)
 
 
 
@@ -72,7 +72,10 @@ model.summary()
 
 #3. 훈련
 model.compile(loss = 'mse', optimizer='adam', metrics=['mse'])
-model.fit([x1_train, x2_train],[y1_train], epochs=500, batch_size=2, validation_split=(0.2), verbose = 1)
+
+from keras.callbacks import EarlyStopping
+early_stopping=EarlyStopping(monitor="loss", patience = 100, mode = 'auto')
+model.fit([x1_train, x2_train],[y1_train], epochs=500, batch_size=2, validation_split=(0.2), verbose = 1, callbacks =[early_stopping])
 # mse 는 회귀 acc는 분류 회귀는 1차함수 분류는 예측값의 범위가 정해져 있다.
 
 

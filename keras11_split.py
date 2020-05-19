@@ -12,7 +12,11 @@ y_train = x[:60]
 y_val = x[59:80]
 y_test = x[79:]
 
-
+print(x_train.shape)
+print(x_val.shape)
+print(x_val)
+print(x_train)
+'''
 from keras.models import Sequential
 from keras.layers import Dense
 model=Sequential()
@@ -57,3 +61,4 @@ from sklearn.metrics import r2_score
 r2=r2_score(y_test,y_predict)
 
 print("R2:",r2)
+'''
