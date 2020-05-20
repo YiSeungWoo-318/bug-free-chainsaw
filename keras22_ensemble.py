@@ -27,11 +27,12 @@ y3 = np.transpose(y3)
 
 
 from sklearn.model_selection import train_test_split
-x1_train, x1_test, y1_train, y1_test = train_test_split(x1, y1, shuffle=False, train_size=0.75)
-from sklearn.model_selection import train_test_split
-x2_train, x2_test, y2_train, y2_test = train_test_split(x2, y2, shuffle=False, train_size=0.75)
-from sklearn.model_selection import train_test_split
-y3_train, y3_test = train_test_split(y3, shuffle=False, train_size=0.75)
+x1_train, x1_test, y1_train, y1_test,x2_train, x2_test, y2_train, y2_test,y3_train, y3_test = train_test_split(x1, y1,x2,y2,y3, shuffle=False, train_size=0.75)
+
+# from sklearn.model_selection import train_test_split
+# x2_train, x2_test, y2_train, y2_test = train_test_split(x2, y2, shuffle=False, train_size=0.75)
+# from sklearn.model_selection import train_test_split
+# y3_train, y3_test = train_test_split(y3, shuffle=False, train_size=0.75)
 
 #2. 모델구성
 from keras.models import Sequential, Model
