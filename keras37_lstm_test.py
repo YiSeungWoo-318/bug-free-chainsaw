@@ -20,53 +20,55 @@ y = np.array([4,5,6,7,8,9,10,11,12,13,50,60,70])
 
 
 x_predict = np.array([55,65,75])
-
+print(x.shape)
 x = x.reshape(x.shape[0],x.shape[1],1)
 
-from sklearn.model_selection import train_test_split
-x_train, x_test = train_test_split(x, random_state = 1 , train_size=0.9)
-y_train, y_test = train_test_split(y, random_state = 3 , train_size=0.9)
+print(x.shape)
 
-input1 = Input(shape=(3,1))
-dense1 = LSTM(10,return_sequences=True)(input1)
-dense2 = LSTM(10,return_sequences=True)(dense1)
-dense3 = LSTM(10,return_sequences=True)(dense2)
-dense4 = LSTM(10,return_sequences=True)(dense3)
-dense5 = LSTM(10)(dense4)
-dense6 = Dense(60)(dense5)
-dense7 = Dense(20)(dense6)
-dense8 = Dense(4)(dense7)
-output1 = Dense(1)(dense8)
+# from sklearn.model_selection import train_test_split
+# x_train, x_test = train_test_split(x, random_state = 1 , train_size=0.9)
+# y_train, y_test = train_test_split(y, random_state = 3 , train_size=0.9)
 
-model = Model(inputs = input1, outputs=output1)
+# input1 = Input(shape=(3,1))
+# dense1 = LSTM(10,return_sequences=True)(input1)
+# dense2 = LSTM(10,return_sequences=True)(dense1)
+# dense3 = LSTM(10,return_sequences=True)(dense2)
+# dense4 = LSTM(10,return_sequences=True)(dense3)
+# dense5 = LSTM(10)(dense4)
+# dense6 = Dense(60)(dense5)
+# dense7 = Dense(20)(dense6)
+# dense8 = Dense(4)(dense7)
+# output1 = Dense(1)(dense8)
 
-#Dense layer는 2차원만 입력받는다. lstm은 3차원을 받고 있다. 따라서 오류바생
-#3차원으로 바꿔 주는 기능을 리턴 시퀀스라고 한다. return_sequences=True
+# model = Model(inputs = input1, outputs=output1)
 
-model.summary()
+# #Dense layer는 2차원만 입력받는다. lstm은 3차원을 받고 있다. 따라서 오류바생
+# #3차원으로 바꿔 주는 기능을 리턴 시퀀스라고 한다. return_sequences=True
 
-
-
-
+# model.summary()
 
 
 
 
-model.compile(loss = 'mse', optimizer='adam')
-
-from keras.callbacks import EarlyStopping
-early_stopping=EarlyStopping(monitor="loss", patience = 50000, mode = 'min')
-
-model.fit(x_train,y_train,epochs=100000,batch_size = 2,callbacks =[early_stopping],validation_split=(0.25))
-
-E=model.evaluate(x_test,y_test)
 
 
-x_predict = x_predict.reshape(1,3,1)  
 
-y_predict = model.predict(x_predict)
 
-print(y_predict)
+# model.compile(loss = 'mse', optimizer='adam')
+
+# from keras.callbacks import EarlyStopping
+# early_stopping=EarlyStopping(monitor="loss", patience = 50000, mode = 'min')
+
+# model.fit(x_train,y_train,epochs=100000,batch_size = 2,callbacks =[early_stopping],validation_split=(0.25))
+
+# E=model.evaluate(x_test,y_test)
+
+
+# x_predict = x_predict.reshape(1,3,1)  
+
+# y_predict = model.predict(x_predict)
+
+# print(y_predict)
 
 
 # from sklearn.metrics import mean_squared_error as mse, r2_score
