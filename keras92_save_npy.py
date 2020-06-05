@@ -1,0 +1,17 @@
+from sklearn.datasets import load_iris
+import numpy as np
+iris=load_iris()
+
+x_data=iris.data
+y_data=iris.target
+
+print(type(x_data))
+
+print(type(y_data))
+
+np.save('./data/iris_x.npy',arr=x_data)
+np.save('./data/iris_y.npy',arr=y_data)
+
+x_data_load = np.load('./data/iris_x.npy')
+x_data_load = np.load('./data/iris_y.npy')
+print(type(x_data_load))

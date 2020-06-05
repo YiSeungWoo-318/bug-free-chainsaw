@@ -17,10 +17,11 @@ model.add(Dense(3))
 model.add(Dense(5))
 model.add(Dense(2))
 model.add(Dense(1))
-
+from keras.models import load_model
+model=save_model('./model/sample/test/check-56-0.0335.hdf5')
 #3.훈련
 model.compile(loss='mse', optimizer = 'adam', metrics=['accuracy'])
-model.fit (x, y, epochs=10000, batch_size=1)
+model.fit (x, y, epochs=1000, batch_size=1)
 
 #4 평가예측
 loss, acc = model.evaluate(x, y)

@@ -63,3 +63,7 @@ plt.legend(['train loss', 'test loss', 'train acc', 'test acc'])
 # print('loss : ', loss)
 # print('mse : ', mse)
 # print('y_predict : ', y_predict)
+
+
+from keras.callbacks import TensorBoard
+tb_hist = TensorBoard(log_dir='graph', histogram_freq=0, write_graph=True write_images=True)

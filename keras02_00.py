@@ -27,7 +27,7 @@ output = model.predict(x_test)
 print("결과물 : \n", output)
 
 #acc이 0 or 1로 수렴 모델 수정 
-
+'''
 from keras.models import Sequential
 from keras.layers import Dense
 import numpy as np
@@ -46,7 +46,7 @@ model.summary()
 
 model.compile(loss='mse', optimizer='adam', metrics=['accuracy'])
 
-model.fit(x_train, y_train, epochs=3000, batch_size=1, validation_data = (x_train, y_train))
+hist=model.fit(x_train, y_train, epochs=100, batch_size=1, validation_data = (x_train, y_train))
 loss, acc = model.evaluate(x_test, y_test, batch_size =1)
 
 print("loss :", loss)
@@ -57,7 +57,36 @@ print("결과물 : \n", output)
 #model 구성에 activation = 'relu'를 제거함으로서 acc=1.0을 얻는 것을 확인하였다
 #model relu는 적합하지 않다.(0,1로 수렴하기 때문에) epochs를 줄임으로서 overfitting된 부분이 감소한 것을 확인하였다.
 
+import matplotlib.pyplot as plt
+plt.figure(figsize=(10,6))
+plt.subplot(2,1,1,)
+plt.plot(hist.history['loss'], marker='.', c='red', label='loss') #plt.plot(x,y,hist.history['loss'])- x, y 별도추가 추가하지 않으면 epochs 순으로 기록 
 
+plt.plot(hist.history['val_loss'], marker='.', c='blue', label='val_loss')
+# plt.plot(hist.history['acc'])
+# plt.plot(hist.history['val_acc'])
+plt.grid()
+plt.title('loss')
+plt.ylabel('loss')
+plt.xlabel('epoch')
+# plt.legend(['loss', 'val_loss'])
+plt.legend(loc='upper right')
+plt.show()
+
+plt.subplot(2,1,2,)
+plt.plot(hist.history['loss'])
+plt.plot(hist.history['val_loss'])
+# plt.plot(hist.history['acc'])
+# plt.plot(hist.history['val_acc'])
+plt.grid()
+plt.title('accuracy')
+plt.ylabel('accuracy')
+plt.xlabel('epoch')
+plt.legend(['loss', 'val_acc'])
+plt.show()
+
+
+'''
 최적화된 배치사이즈 찾기
 
 from keras.models import Sequential
@@ -89,7 +118,7 @@ print("결과물 : \n", output)
 epochs = 300 일때 batch사이즈 32는 결과 x batch사이즈 1일때는 결과 정확하므로 1에서 순차적으로 숫자를 증가하기로 하였다. 배치 2여도 acc =0이 된다
 따라서 1이 최적이다. 단 오차범위 약 0.02이므로 목표치를 0.002로 설정하고 다시 해보기로 했다. 단, epochs값 300이하로 '''
 
-
+'''
 from keras.models import Sequential
 from keras.layers import Dense
 import numpy as np
@@ -116,4 +145,4 @@ print("loss :", loss)
 print("acc:",  acc)
 
 output = model.predict(x_test)
-print("결과물 : \n", output)
+print("결과물 : \n", output)'''

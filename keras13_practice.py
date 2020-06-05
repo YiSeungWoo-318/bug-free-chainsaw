@@ -19,9 +19,11 @@ x_train, x_test, y_train, y_test = train_test_split(x,y,train_size=0.75)
 
 from keras.models import Sequential
 from keras.layers import Dense
+x_train=x_train.reshape(x_train.shape[0],1)
+x_test=x_test.reshape(x_test.shape[0],1)
 
 model = Sequential()
-model.add(Dense(5, input_dim=1))
+model.add(Dense(5))
 model.add(Dense(5))
 model.add(Dense(5))
 model.add(Dense(5))
