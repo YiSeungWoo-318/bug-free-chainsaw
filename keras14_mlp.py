@@ -1,3 +1,5 @@
+import keras.utils 
+
 #1. 데이터
 import numpy as np
 x = np.array([range(1, 101), range(301,401),range(100)])
@@ -29,6 +31,10 @@ model.fit(x_train, y_train, epochs=500, batch_size=1, validation_split=(0.1))
 
 #4. 평가, 예측
 loss, mse = model.evaluate(x_test, y_test, batch_size=1) #x,y를 평가하여 loss와 acc에 반환하겠다.
+
+
+
+
 '''
 print("loss : ", loss)
 print("mse : ", mse)

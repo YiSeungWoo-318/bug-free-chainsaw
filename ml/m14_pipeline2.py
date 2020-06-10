@@ -127,9 +127,9 @@ x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.2, shuff
 
 # 그리드 / 랜덤 서치에서 사용할 매개 변수
 parameters = [
-    {"svm__C" :[1, 10, 100, 1000], "svm__kernel" :['linear']},
-    {"svm__C" :[1, 10, 100,1000], "svm__kernel" :['rbf'], 'svm__gamma':[0.001, 0.0001]},
-    {"svm__C" :[1, 10, 100, 1000], "svm__kernel" :['sigmoid'], 'svm__gamma':[0.001, 0.0001]}
+    {"svc__C" :[1, 10, 100, 1000], "svc__kernel" :['linear']},
+    {"svc__C" :[1, 10, 100,1000], "svc__kernel" :['rbf'], 'svc__gamma':[0.001, 0.0001]},
+    {"svc__C" :[1, 10, 100, 1000], "svc__kernel" :['sigmoid'], 'svc__gamma':[0.001, 0.0001]}
 ]
 
 # 2. 모델
@@ -139,8 +139,8 @@ from sklearn.pipeline import Pipeline, make_pipeline
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 
 # pipe = make_pipeline(MinMaxScaler(),SVC())
-pipe = Pipeline([("scaler", MinMaxScaler()), ('svm', SVC())])
-
+# pipe = Pipeline([("scaler", MinMaxScaler()), ('svm', SVC())])
+pipe =make_pipeline(MinMaxScaler(),SVC())
 model = RandomizedSearchCV(pipe, parameters, cv=5)
 
 #3. 훈련
